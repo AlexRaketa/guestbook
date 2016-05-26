@@ -11,6 +11,11 @@
     </div>
 
     <div class="form-group">
+        <label for="homepage">Homepage:</label>
+        <input class="form-control" placeholder="Homepage" name="homepage" type="url" id="homepage">
+    </div>
+
+    <div class="form-group">
         <label for="message">Сообщение: *</label>
         <input class="form-control" rows="5" placeholder="Текст сообщения" name="message" cols="50" id="message">
     </div>
