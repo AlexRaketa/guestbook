@@ -18,4 +18,6 @@
 
 
 Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home']);
+Route::post('message', ['uses' => 'HomeController@create', 'as' => 'message.submit']);
 Route::get('message/{id}/edit', ['uses' => 'HomeController@edit', 'as' => 'message.edit'])->where(['id' => '[0-9]+']);
+Route::get('message/{id}/delete', ['uses' => 'HomeController@delete', 'as' => 'message.delete'])->where(['id' => '[0-9]+']);

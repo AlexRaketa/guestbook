@@ -1,13 +1,27 @@
-<form method="post" id="id-form_messages">
+@if(Session::has('message.submit'))
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ Session::get('message.submit') }}
+    </div>
+@endif
 
-    <div class="form-group">
-        <label for="name">Имя: *</label>
-        <input class="form-control" placeholder="Имя" name="name" type="text" id="name">
+{{ Form::open(['route' => 'message.submit']) }}
+
+    <div class="form-group @if($errors->has('name')) has-error @endif">
+        <label for="name" class="control-label">Имя: *</label>
+
+        {{  Form::text('name', old('name'), ['placeholder' => 'Имя', 'class' => 'form-control']) }}
+        {!! $errors->first('name','<span class="help-block">:message</span>') !!}
+
     </div>
 
-    <div class="form-group">
-        <label for="email">E-mail:</label>
-        <input class="form-control" placeholder="E-mail" name="email" type="email" id="email">
+    <div class="form-group @if($errors->has('email')) has-error @endif">
+        <label for="email" class="control-label">E-mail: *</label>
+
+        {{  Form::email('email', old('email'), ['placeholder' => 'Почта', 'class' => 'form-control']) }}
+        {!! $errors->first('email','<span class="help-block">:message</span>') !!}
     </div>
 
     <div class="form-group">
@@ -15,13 +29,14 @@
         <input class="form-control" placeholder="Homepage" name="homepage" type="url" id="homepage">
     </div>
 
-    <div class="form-group">
-        <label for="message">Сообщение: *</label>
-        <input class="form-control" rows="5" placeholder="Текст сообщения" name="message" cols="50" id="message">
+    <div class="form-group @if($errors->has('message')) has-error @endif">
+        <label for="message" class="control-label">Сообщение: *</label>
+        {{  Form::textarea('message', old('message'), ['placeholder' => 'Сообщение', 'class' => 'form-control']) }}
+        {!! $errors->first('message','<span class="help-block">:message</span>') !!}
     </div>
 
     <div class="form-group">
-        <input class="btn btn-primary" type="submit" value="Добавить">
+        <input class="btn btn-primary" type="submit" value="Добавить сообщение">
     </div>
 
-</form>
+{{ Form::close() }}

@@ -14,9 +14,11 @@ class CreateMessageTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->index();
-            $table->string('email')->nullable()->index();
+            $table->string('name');
+            $table->string('email')->nullable();
             $table->string('homepage');
+            $table->ipAddress('ip');
+            $table->string('client');
             $table->text('message');
             $table->timestamps();
         });
